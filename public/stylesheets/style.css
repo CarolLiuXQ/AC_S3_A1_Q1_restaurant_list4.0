@@ -33,6 +33,10 @@ header {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+#search-button{
+  background-color: #9b4b4b;
+  color:white;
+}
 .search-bar .search-bar-inner h4 {
   color: #9b4b4b;
 }

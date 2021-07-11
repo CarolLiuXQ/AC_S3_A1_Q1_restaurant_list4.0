@@ -34,6 +34,28 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+/////新增餐廳/////////////
+app.post('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+//新增之後導去/restaurants做存進database的動作
+app.post('/restaurants', (req, res) => {
+  const restaurant = new Restaurant({
+    name: req.body.name,
+    name_en: req.body.name_en,
+    category: req.body.category,
+    image: req.body.image,
+    location: req.body.location,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    phone: req.body.phone,
+    description: req.body.description
+  })
+  return restaurant.save()
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })

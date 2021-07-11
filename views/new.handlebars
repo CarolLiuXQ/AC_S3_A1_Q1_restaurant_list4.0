@@ -1,0 +1,60 @@
+<form class="row g-3 needs-validation d-flex justify-content-center" method="POST" action="/restaurants">
+  <div class="col-md-8">
+    <label for="validationCustom01" class="form-label">Name</label>
+    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Sababa 沙巴巴中東美食" required>
+  </div>
+  <div class="col-md-8">
+    <label for="validationCustom02" class="form-label">English Name</label>
+    <input type="text" class="form-control" id="validationCustom02" required name="name_en"
+      placeholder="Sababa Pita Bar">
+  </div>
+  <div class="col-md-8">
+    <label for="inputState" class="form-label">Category</label>
+    <input list="titles" class="form-control" name="category" id="title" required>
+    <datalist id="titles">
+      <option>日式料理</option>
+      <option>義式餐廳</option>
+      <option>中東料理</option>
+      <option>美式</option>
+      <option>咖啡</option>
+      <option>酒吧</option>
+    </datalist>
+  </div>
+  <div class="col-md-8">
+    <label for="validationCustom01" class="form-label">Image URL</label>
+    <input type="text" class="form-control" id="validationCustom04" required name="image"
+      placeholder="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg">
+  </div>
+  <div class="col-md-8">
+    <label for="validationCustom01" class="form-label">Location</label>
+    <input type="text" class="form-control" id="validationCustom05" required name="location"
+      placeholder="台北市大安區羅斯福路三段 283 巷 17 號">
+  </div>
+  <div class="col-md-8">
+    <label for="validationCustom01" class="form-label">Google_map</label>
+    <input type="text" class="form-control" id="validationCustom06" required name="google_map"
+      placeholder="https://goo.gl/maps/BJdmLuVdDbw">
+  </div>
+  <div class="col-md-8">
+    <label for="validationCustom01" class="form-label">Rating</label>
+    <input type="number" class="form-control" id="validationCustom07" required name="rating" min="0" max="5"
+      placeholder="4.1">
+  </div>
+  <div class="col-md-8">
+    <label for="validationCustom01" class="form-label">Phone</label>
+    <input type="text" class="form-control" id="validationCustom08" required name="phone" placeholder="02 2363 8009">
+  </div>
+  <div class="col-md-8">
+    <label for="validationCustom01" class="form-label">Description</label>
+    <input type="text" class="form-control" id="validationCustom09" required name="description"
+      placeholder="沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方">
+  </div>
+  <div class="col-8">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>
+<div class="row g-3 d-flex justify-content-center mt-2">
+  <div class="col-8 mt-0">
+    <button class="btn btn-secondary" type="submit" onclick="location.href='/'">Back</button>
+  </div>
+</div>
