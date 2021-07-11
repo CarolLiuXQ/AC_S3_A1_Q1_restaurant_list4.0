@@ -53,14 +53,12 @@
             </div>
         </div>
       </div>
+      {{else}}
+      {{!-- If there is no searching result --}}
+      <div class="d-flex justify-content-center">
+        <h1>No searching results. Please try agin.</h1>
+      </div>
       {{/each}}
     </div>
   </div>
-</div>
-
-{{!-- If there is no searching result --}}
-<div class="d-flex justify-content-center">
-  <h1>
-    {{noSearchResult}}
-  </h1>
 </div>
