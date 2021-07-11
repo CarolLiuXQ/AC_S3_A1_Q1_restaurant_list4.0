@@ -56,6 +56,35 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
+/////////編輯 page///////////
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+//把編輯過的內容更新進DB
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = req.body.name
+      restaurant.name_en = req.body.name_en
+      restaurant.category = req.body.category
+      restaurant.image = req.body.image
+      restaurant.location = req.body.location
+      restaurant.google_map = req.body.google_map
+      restaurant.rating = req.body.rating
+      restaurant.phone = req.body.phone
+      restaurant.description = req.body.description
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
+
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
