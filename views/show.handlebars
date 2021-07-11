@@ -36,6 +36,12 @@
 
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
+      <button type="button" class="btn btn-outline-secondary"
+        onclick="location.href='/restaurants/{{restaurant._id}}/edit'">Edit</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="location.href='/'">Back</button>
+      <form action="/restaurants/{{restaurant._id}}/delete" method="POST" style="display:inline">
+        <button type="submit" class="btn btn-outline-danger">Delete</button>
+      </form>
     </div>
   </div>
 </div>
