@@ -4,7 +4,8 @@ const exphbs = require('express-handlebars')
 const port = 3000
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/restaurant_list')
+const Restaurant = require('./models/restaurant')
+mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
 
@@ -17,7 +18,10 @@ db.once('open', () => console.log('mongodb connected'))
 
 
 app.get('/', (req, res) => {
-  res.render('index')
+  Restaurant.find()
+    .lean()
+    .then(restaurant => res.render('index', { restaurant }))
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {
