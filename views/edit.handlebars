@@ -1,5 +1,5 @@
 <form class="row g-3 needs-validation d-flex justify-content-center" method="POST"
-  action="/restaurants/{{restaurant._id}}/edit">
+  action="/restaurants/{{restaurant._id}}?_method=PUT">
   <div class="col-md-8">
     <label for="validationCustom01" class="form-label">Name</label>
     <input type="text" class="form-control" id="validationCustom01" name="name" value="{{restaurant.name}}" required>

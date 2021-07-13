@@ -5,6 +5,7 @@ const port = 3000
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
+const methodOverride = require('method-override')
 mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
@@ -13,6 +14,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
 
 db.on('error', () => console.log(error))
 db.once('open', () => console.log('mongodb connected'))
@@ -65,7 +67,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 //把編輯過的內容更新進DB
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => {
@@ -85,7 +87,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 ///////刪除餐廳//////////
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
