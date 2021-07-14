@@ -6,9 +6,15 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 
+// set view templates
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  helpers: require('./controller/handlebarsHelpers')
+}))
+app.set('view engine', 'hbs')
+
 require('./config/mongoose')
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))

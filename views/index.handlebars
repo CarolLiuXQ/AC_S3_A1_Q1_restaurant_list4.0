@@ -1,7 +1,7 @@
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer d-flex flex-row">
-    <div class="search-bar-inner col-10">
+    <div class="search-bar-inner col-9">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group mb-3">
@@ -13,18 +13,17 @@
         </div>
       </form>
     </div>
-    <div class="dropdown d-flex justify-content-end m-auto col-2">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-        data-bs-toggle="dropdown" aria-expanded="false">
-        Sort
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">A→Z</a></li>
-        <li><a class="dropdown-item" href="#">Z→A</a></li>
-        <li><a class="dropdown-item" href="#">類別</a></li>
-        <li><a class="dropdown-item" href="#">區域</a></li>
-      </ul>
-    </div>
+    <form action="/" method="GET" class="col-3 mt-4 px-3">
+      <select class="form-select" aria-label="Default select example" name="sortOption" id="sortOption"
+        onchange="submit()">
+        <option value="">Sort</option>
+        {{#each sortData}}
+        <option value="{{this.value}}" {{#isEqual this.value ../currentSortOption}} selected {{/isEqual}}>
+          {{this.option}}
+        </option>
+        {{/each}}
+      </select>
+    </form>
   </div>
 </div>
 
