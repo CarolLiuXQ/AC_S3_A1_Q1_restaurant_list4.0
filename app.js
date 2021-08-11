@@ -4,7 +4,10 @@ const exphbs = require('express-handlebars')
 const port = 3000
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const session = require('express-session')
+
 const routes = require('./routes')
+require('./config/mongoose')
 
 // set view templates
 app.engine('handlebars', exphbs({
@@ -13,7 +16,11 @@ app.engine('handlebars', exphbs({
 }))
 app.set('view engine', 'hbs')
 
-require('./config/mongoose')
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
