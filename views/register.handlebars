@@ -1,14 +1,15 @@
 <div class="row col-5 m-auto mt-4">
-  <form>
+  <form method="POST" action="/users/register">
     <h1 class="text-center">Register</h1>
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
-      <input type="name" class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="John Austin">
+      <input type="name" class="form-control" id="name" aria-describedby="nameHelp" name="name"
+        placeholder="John Austin" value="{{name}}">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required
-        placeholder="123@example.com">
+        placeholder="123@example.com" value="{{email}}">
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
