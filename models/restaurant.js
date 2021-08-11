@@ -4,7 +4,7 @@ const restaurantSchema = new Schema({
   name: {
     type: String,
     require: true
-  } ,
+  },
   name_en: {
     type: String,
     require: true
@@ -36,6 +36,12 @@ const restaurantSchema = new Schema({
   description: {
     type: String,
     require: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 

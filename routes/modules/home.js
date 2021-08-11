@@ -12,7 +12,8 @@ router.get('/', (req, res) => {
     category: { category: 'asc' },
     location: { location: 'asc' }
   }
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .sort(sortMongoose[currentSortOption])
     .then(restaurant => res.render('index', { restaurant, sortData, sortData, currentSortOption }))
