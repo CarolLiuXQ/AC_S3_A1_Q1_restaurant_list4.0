@@ -33,10 +33,15 @@ router.post('/register', (req, res) => {
 
 
 // 加入 middleware，驗證 request 登入狀態
-route.post('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login'
 }))
 
+router.get('/logout', (req, res) => {
+  //req.logout() 是 Passport.js 提供的函式
+  req.logOut()
+  res.redirect('/users/login')
+})
 
 module.exports = router
