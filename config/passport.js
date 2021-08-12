@@ -11,14 +11,18 @@ module.exports = app => {
   // 設定序列化與反序列化
   passport.use(new LocalStrategy(
     //把驗證項目從預設的 username 改成 email
-    { usernameField: 'email' }, (email, password, done) => {
+    {
+      usernameField: 'email',
+      passReqToCallback: true,
+      session: false
+    }, (req, email, password, done) => {
       User.findOne({ email })
         .then(user => {
           if (!user) {
-            return done(null, false, { message: 'Incorrect username.' })
+            return done(null, false, req.flash('warning_msg', 'This email is not registered.'))
           }
           if (user.password !== password) {
-            return done(null, false, { message: 'Incorrect password.' })
+            return done(null, false, req.flash('warning_msg', 'Incorrect password.'))
           }
           return done(null, user)
         })

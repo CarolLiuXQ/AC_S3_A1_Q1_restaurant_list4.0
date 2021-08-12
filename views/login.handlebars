@@ -1,6 +1,7 @@
 <div class="row col-5 m-auto mt-4">
   <form action="/users/login" method="POST">
     <h1 class="text-center">Login</h1>
+    {{> message}}
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"

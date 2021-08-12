@@ -7,8 +7,8 @@ const search = require('./modules/search')
 const users = require('./modules/users')
 const { authenticator } = require('../middleware/auth')
 
-router.use('/users', users)
 router.use('/restaurants', authenticator, restaurants)
+router.use('/users', users)
 router.use('/search', authenticator, search)
 router.use('/', authenticator, home)
 
