@@ -3,6 +3,8 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 const User = require('../../models/user')
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
+
 
 router.get('/login', (req, res) => {
   res.render('login')
@@ -38,16 +40,20 @@ router.post('/register', (req, res) => {
   User.findOne({ email }).then(user => {
     if (user) {
       errors.push({ message: 'User exists.' })
-      res.render('register', {
+      return res.render('register', {
         name, email, errors
       })
-    } else {
-      return User.create({
-        name, email, password
-      })
-        .then(() => res.redirect('login'))
-        .catch(err => console.log(err))
     }
+    return bcrypt
+      .genSalt(10)
+      .then(salt => bcrypt.hash(password, salt))
+      .then(hash =>
+        User.create({
+          name, email, password: hash
+        }))
+      .then(() => res.redirect('login'))
+      .catch(err => console.log(err))
+
   })
 })
 
